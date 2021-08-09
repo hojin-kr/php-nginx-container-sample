@@ -27,8 +27,8 @@ docker build -t test:v1 .
 docker run -p8080:80 -t test:v1
 ```
 
-GCP gcr 업로드
+GCP gcr 업로드 , 배포
 ```
-docker build --tag "gcr.io/sample/sample" .
-docker push "gcr.io/sample/sample"
+gcloud builds submit --tag gcr.io/$PROJECT_ID/app --project $PROJECT_ID .
+gcloud run deploy app --image=gcr.io/$PROJECT_ID/app --project=$PROJECT_ID --region=us-central1 --port=80
 ```
