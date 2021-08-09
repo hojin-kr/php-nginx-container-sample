@@ -29,5 +29,5 @@ COPY --chown=www-data:www-data code/ /var/www/html
 WORKDIR /var/www/html
 
 EXPOSE 80 443
-RUN chmod +x entrypoint.sh
+RUN chmod +x /etc/entrypoint.sh
 ENTRYPOINT ["/etc/entrypoint.sh"]
