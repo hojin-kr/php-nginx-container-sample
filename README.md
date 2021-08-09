@@ -27,8 +27,24 @@ docker build -t test:v1 .
 docker run -p8080:80 -t test:v1
 ```
 
+
+
 GCP gcr 업로드 , 배포
 ```
 gcloud builds submit --tag gcr.io/$PROJECT_ID/app --project $PROJECT_ID .
 gcloud run deploy app --image=gcr.io/$PROJECT_ID/app --project=$PROJECT_ID --region=us-central1 --port=80
 ```
+deploy Options
+https://cloud.google.com/sdk/gcloud/reference/run/deploy
+
+no-taaffic으로 배포
+```
+gcloud run deploy app --image=gcr.io/fluid-axe-315707/app --namespace=app --project=fluid-axe-315707 --region=us-central1 --port=80 --no-traffic
+```
+트래픽 조정
+https://cloud.google.com/sdk/gcloud/reference/run/services/update-traffic
+
+```
+cloud run services update-traffic app --namespace=app --project=fluid-axe-315707 --region=us-central1 --to-revisions=LATEST=10
+```
+
